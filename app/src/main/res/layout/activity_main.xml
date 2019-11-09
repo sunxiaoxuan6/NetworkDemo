@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+   <Button
+       android:id="@+id/bt_url"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="HttpURLConnection访问网络"
+       android:textSize="20dp"
+       android:textAllCaps="false"/>
+    <Button
+        android:id="@+id/bt_ok"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="OkHttp访问网络"
+        android:textSize="20dp"
+        android:textAllCaps="false"/>
+    <Button
+        android:id="@+id/bt_three"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="获取第三方数据"
+        android:textSize="20dp"/>
+</LinearLayout>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".VisitActivity"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:id="@+id/sv_scroll1"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="gone">
+    <TextView
+        android:id="@+id/tv_http"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="网络请求结果"
+        android:textSize="25dp"/>
+    </ScrollView>
+
+        <ImageView
+            android:id="@+id/iv_image"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/bt_get1"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:onClick="onClick"
+            android:text="GET请求"/>
+        <Button
+            android:id="@+id/bt_post1"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:onClick="onClick"
+            android:layout_height="wrap_content"
+            android:text="POST请求"/>
+        <Button
+            android:id="@+id/bt_up1"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:onClick="onClick"
+            android:layout_height="wrap_content"
+            android:text="上传文件"/>
+        <Button
+            android:id="@+id/bt_down1"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:onClick="onClick"
+            android:layout_height="wrap_content"
+            android:text="下载文件"/>
+    </LinearLayout>
+
+</LinearLayout>

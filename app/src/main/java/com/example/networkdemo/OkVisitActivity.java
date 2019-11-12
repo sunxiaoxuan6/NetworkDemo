@@ -41,7 +41,7 @@ import java.util.Map;
 
 public class OkVisitActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG="OkVisitActivity";
-
+//请求的URL
     private static final String IP_BASE_URL = "http://ip.taobao.com/service/getIpInfo.php";
     private static final String IP_URL=IP_BASE_URL+"?ip=221.226.155.15";
 
@@ -69,7 +69,7 @@ public class OkVisitActivity extends AppCompatActivity implements View.OnClickLi
         scroll=findViewById(R.id.sv_scroll2);
         text=findViewById(R.id.tv_OkHttp);
         image=findViewById(R.id.iv_image2);
-
+//加载图片
         GlideApp.with(this)
                 .load("http://guolin.tech/book.png")
                 .listener(new RequestListener<Drawable>() {
@@ -122,7 +122,9 @@ public class OkVisitActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 
+//    get异步请求是在子线程中执行的，需要切换到主线程更新UI
     private void get(String url){
+//        1、构造Request
         Request request=new Request.Builder().url(url)
                 .header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64) " +
                         "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36")
@@ -130,19 +132,19 @@ public class OkVisitActivity extends AppCompatActivity implements View.OnClickLi
 //                .get()
 //                .method("GET",null)
                 .build();
-
+//        2、发送请求，并处理回调
         OkHttpClient client=HttpsUtil.handleSSLHandshakeByOkHttp();
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(@NotNull Call call, @NotNull final IOException e) {
                 Log.e(TAG, e.getMessage());
                 runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        text.setText("获取失败，" + e.getMessage());
-                    }
-                });
-            }
+                @Override
+                public void run() {
+                    text.setText("获取失败，" + e.getMessage());
+                }
+            });
+        }
 
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
@@ -173,9 +175,9 @@ public class OkVisitActivity extends AppCompatActivity implements View.OnClickLi
     }
 
     private void post(String url,Map<String,String> params){
-
+        // 1. 构建RequestBody
         RequestBody body=setRequestBody(params);
-
+        // 2. 创建Request对象
         Request request=new Request.Builder().url(url).post(body)
                 .header("User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64) " +
                         "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36")

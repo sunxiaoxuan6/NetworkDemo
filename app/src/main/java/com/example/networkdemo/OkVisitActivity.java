@@ -48,13 +48,12 @@ public class OkVisitActivity extends AppCompatActivity implements View.OnClickLi
     private static final String UPLOAD_FILE_URL = "https://api.github.com/markdown/raw";
 
     private static final String UPLOAD_IMG_URL = "https://api.imgur.com/3/image";
+
     private static final String DOWNLOAD_URL = "https://github.com/zhayh/AndroidExample/blob/master/README.md";
     private static final String IMAGE_URL = "https://img.alicdn.com/bao/uploaded/i2/100000294640179384/TB24I0xXNQa61Bjy0FhXXaalFXa_!!0-0-travel.jpg";
 
     // 指定MIME类型
-    public static final MediaType MEDIA_TYPE_JSON = MediaType.parse("application/json;charset=utf-8");
-    public static final MediaType MEDIA_TYPE_MARKDOWN = MediaType.parse("text/x-markdown;charset=utf-8");
-    public static final MediaType MEDIA_TYPE_PNG = MediaType.parse("image/png");
+//    public static final MediaType MEDIA_TYPE_JSON = MediaType.parse("application/json;charset=utf-8");
 
 
     private ScrollView scroll;
@@ -109,12 +108,14 @@ public class OkVisitActivity extends AppCompatActivity implements View.OnClickLi
             case R.id.bt_up2:
                 scroll.setVisibility(View.VISIBLE);
                 image.setVisibility(View.GONE);
+
                 String fileName=path+ File.separator+"readme.md";
                 uploadFile(UPLOAD_FILE_URL,fileName);
                 break;
             case R.id.bt_down2:
                 scroll.setVisibility(View.VISIBLE);
                 image.setVisibility(View.GONE);
+
                 downFile(DOWNLOAD_URL, path);
                 break;
             default:
@@ -233,7 +234,9 @@ public class OkVisitActivity extends AppCompatActivity implements View.OnClickLi
         }
         return builder.build();
     }
+//上传文件
 
+    public static final MediaType MEDIA_TYPE_MARKDOWN = MediaType.parse("text/x-markdown;charset=utf-8");
     private void uploadFile(String url, final String fileName){
         final Request request=new Request.Builder().url(url)
                 .post(RequestBody.create(new File(fileName),MEDIA_TYPE_MARKDOWN))
@@ -270,6 +273,8 @@ public class OkVisitActivity extends AppCompatActivity implements View.OnClickLi
         });
     }
 
+//上传图片
+    public static final MediaType MEDIA_TYPE_PNG = MediaType.parse("image/png");
     private void uploadImage(String url,final String fileName){
         // 1. 创建请求主体RequestBody
         RequestBody fileBody = RequestBody.create(new File(fileName), MEDIA_TYPE_PNG);
@@ -314,7 +319,7 @@ public class OkVisitActivity extends AppCompatActivity implements View.OnClickLi
         });
     }
 
-
+//下载文件
     public static void writeFile(InputStream is,String path,String fileName) throws IOException{
         // 1. 根据path创建目录对象，并检查path是否存在，不存在则创建
         File directory = new File(path);
@@ -341,7 +346,7 @@ public class OkVisitActivity extends AppCompatActivity implements View.OnClickLi
         bis.close();
     }
 
-
+//OKHttp下载文件
     private void downFile(final String url,final String path){
         // 1. 创建Requet对象
         Request request = new Request.Builder().url(url).build();

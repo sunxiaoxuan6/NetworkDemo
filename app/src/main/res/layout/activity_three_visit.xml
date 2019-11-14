@@ -24,7 +24,7 @@
             android:layout_width="0dp"
             android:onClick="onClick"
             android:layout_height="wrap_content"
-            android:text="天气预报"/>
+            android:text="5天预报"/>
         <Button
             android:id="@+id/bt_oil"
             android:layout_weight="1"
